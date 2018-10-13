@@ -15,7 +15,7 @@ class ItemsQuery extends \yii\db\ActiveQuery
     }*/
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return Items[]|array
      */
     public function all($db = null)
@@ -24,7 +24,7 @@ class ItemsQuery extends \yii\db\ActiveQuery
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return Items|array|null
      */
     public function one($db = null)

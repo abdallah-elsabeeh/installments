@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
@@ -26,12 +25,17 @@ use kartik\date\DatePicker;
     ]);
     ?>
 
-        <?= $form->field($model, 'total')->textInput() ?>
+    <?= $form->field($model, 'date')->textInput() ?>
 
-    <div class="form-group">
-    <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
-    </div>
+    <?= $form->field($model, 'total')->textInput() ?>
 
-<?php ActiveForm::end(); ?>
+  
+	<?php if (!Yii::$app->request->isAjax){ ?>
+	  	<div class="form-group">
+	        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	    </div>
+	<?php } ?>
 
+    <?php ActiveForm::end(); ?>
+    
 </div>

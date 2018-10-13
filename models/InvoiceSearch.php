@@ -8,14 +8,15 @@ use yii\data\ActiveDataProvider;
 use app\models\Invoice;
 
 /**
- * InvoiceSearch represents the model behind the search form of `app\models\Invoice`.
+ * InvoiceSearch represents the model behind the search form about `app\models\Invoice`.
  */
-class InvoiceSearch extends Invoice {
-
+class InvoiceSearch extends Invoice
+{
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             [['id', 'number', 'total'], 'integer'],
             [['title', 'date'], 'safe'],
@@ -25,7 +26,8 @@ class InvoiceSearch extends Invoice {
     /**
      * @inheritdoc
      */
-    public function scenarios() {
+    public function scenarios()
+    {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -37,10 +39,9 @@ class InvoiceSearch extends Invoice {
      *
      * @return ActiveDataProvider
      */
-    public function search($params) {
+    public function search($params)
+    {
         $query = Invoice::find();
-
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -54,17 +55,15 @@ class InvoiceSearch extends Invoice {
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'number' => $this->number,
+            'date' => $this->date,
             'total' => $this->total,
-            'date' => $this->date
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }
-
 }

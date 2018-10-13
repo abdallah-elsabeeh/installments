@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use app\models\Installment;
 
 /**
- * InstallmentSearch represents the model behind the search form of `app\models\Installment`.
+ * InstallmentSearch represents the model behind the search form about `app\models\Installment`.
  */
 class InstallmentSearch extends Installment
 {
@@ -18,8 +18,8 @@ class InstallmentSearch extends Installment
     public function rules()
     {
         return [
-            [['id', 'item_id', 'customer_id', 'notes', 'is_made_payment', 'total'], 'integer'],
-            [['date', 'cheque_number'], 'safe'],
+            [['id', 'item_id', 'customer_id', 'is_made_payment', 'total'], 'integer'],
+            [['date', 'cheque_number', 'notes'], 'safe'],
         ];
     }
 
@@ -43,8 +43,6 @@ class InstallmentSearch extends Installment
     {
         $query = Installment::find();
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -57,19 +55,17 @@ class InstallmentSearch extends Installment
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'item_id' => $this->item_id,
-            'customer_id' =>  $this->customer['name'],
-            'customer'=>  $this->customer['name'],
+            'customer_id' => $this->customer_id,
             'date' => $this->date,
-            'notes' => $this->notes,
             'is_made_payment' => $this->is_made_payment,
             'total' => $this->total,
         ]);
 
-        $query->andFilterWhere(['like', 'cheque_number', $this->cheque_number]);
+        $query->andFilterWhere(['like', 'cheque_number', $this->cheque_number])
+            ->andFilterWhere(['like', 'notes', $this->notes]);
 
         return $dataProvider;
     }

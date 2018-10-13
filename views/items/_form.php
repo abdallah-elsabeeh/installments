@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
@@ -15,7 +14,7 @@ use app\models\Customers;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput() ?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'cost')->textInput() ?>
 
@@ -26,12 +25,17 @@ use app\models\Customers;
     <?= $form->field($model, 'notes')->textarea(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'is_sold')->checkbox() ?>
-    
+
     <?= $form->field($model, 'sold_to')->dropDownList(ArrayHelper::map(Customers::find()->asArray()->all(), 'id', 'name'))?>
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
-    </div>
+
+
+  
+	<?php if (!Yii::$app->request->isAjax){ ?>
+	  	<div class="form-group">
+	        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	    </div>
+	<?php } ?>
 
     <?php ActiveForm::end(); ?>
-
+    
 </div>

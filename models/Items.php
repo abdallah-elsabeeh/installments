@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "{{%items}}".
  *
  * @property int $id
- * @property int $name
+ * @property string $name
  * @property int $cost
  * @property int $price
  * @property int $invoice_number
@@ -23,7 +23,7 @@ use Yii;
 class Items extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -31,22 +31,22 @@ class Items extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['name', 'cost', 'price', 'invoice_number', 'sold_to'], 'required'],
             [['cost', 'price', 'invoice_number', 'is_sold', 'sold_to'], 'integer'],
-            [['notes'], 'string', 'max' => 250],
             [['name'], 'string', 'max' => 50],
+            [['notes'], 'string', 'max' => 250],
             [['sold_to'], 'exist', 'skipOnError' => true, 'targetClass' => Customers::className(), 'targetAttribute' => ['sold_to' => 'id']],
             [['invoice_number'], 'exist', 'skipOnError' => true, 'targetClass' => Invoice::className(), 'targetAttribute' => ['invoice_number' => 'id']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -87,7 +87,7 @@ class Items extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return ItemsQuery the active query used by this AR class.
      */
     public static function find()
