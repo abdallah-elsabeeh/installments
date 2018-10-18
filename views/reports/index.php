@@ -1,70 +1,40 @@
 <?php
-/* @var $this yii\web\View */
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
-$this->title = 'My Yii Application';
+$this->title = Yii::t('app', 'monthly installment');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+<div class="row">
+    <div class="col-md-6">
+        <h1>مجموع الاقساط غير المدفوعة: <?= $totalUnpaidInstallment; ?></h1>
     </div>
+    <div class="col-md-6">
+        <h1>مجموع الاقساط المتأخرة: <?= $totalDueInstallment; ?></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h1>مجموع الاقساط الكلي: <?= $totalUnpaidInstallment; ?></h1>
+    </div>
+    <div class="col-md-6">
+        <h1>مجموع الاقساط الكلي: <?= $totalUnpaidInstallment; ?></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <?= Html::a(Yii::t('app', 'monthly installment beer user'), ['reports/monthly-installment-beer-user'], ['class' => 'btn btn-success']) ?>
 
-    <div class="body-content">
+    </div>
+    <div class="col-md-4">
+        <?= Html::a(Yii::t('app', 'monthly installment'), ['reports/monthly-installment'], ['class' => 'btn btn-success']) ?>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>الحصص</h2>
-
-                <?=
-                GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'columns' => [
-                        'total',
-//                        [
-//                            'attribute' => 'item',
-//                            'label' => 'Item Name',
-//                            'value' => 'item.name'
-//                        ],
-//                         [
-//                        'attribute' => 'customer_id',
-//                        'label' => 'customer name',
-//                        'value' => function($model) {
-//                            return $model->totalUnPaidInstallment[1];
-//                        },
-                       
-//                            ],
-                    ],
-                ]);
-                ?>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
+    </div>
+      <div class="col-md-4">
+        <?= Html::a(Yii::t('app', 'due installment'), ['reports/due-installment'], ['class' => 'btn btn-success']) ?>
 
     </div>
 </div>
