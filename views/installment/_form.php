@@ -34,8 +34,6 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'is_made_payment')->checkbox() ?>
 
-    <?= $form->field($model, 'total')->textInput() ?>
-
   
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">
