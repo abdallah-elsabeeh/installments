@@ -50,7 +50,7 @@ class ReportsController extends \yii\web\Controller {
     public function actionDueInstallment() {
         $due_installment = "SELECT * FROM installment
                             JOIN customers on customers.id =installment.customer_id
-                            WHERE installment.is_made_payment = 0 AND installment.date < LAST_DAY(CURDATE())
+                            WHERE installment.is_made_payment = 0 AND installment.date < CURDATE()
                             AND customers.status = 1
                             GROUP BY customers.id";
         $count = count(Yii::$app->db->createCommand($due_installment)->queryAll());
