@@ -15,7 +15,7 @@ class CustomersQuery extends \yii\db\ActiveQuery
     }*/
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return Customers[]|array
      */
     public function all($db = null)
@@ -24,7 +24,7 @@ class CustomersQuery extends \yii\db\ActiveQuery
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return Customers|array|null
      */
     public function one($db = null)

@@ -19,7 +19,7 @@ class CustomersSearch extends Customers
     {
         return [
             [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['name', 'status'], 'safe'],
         ];
     }
 
@@ -59,7 +59,8 @@ class CustomersSearch extends Customers
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }

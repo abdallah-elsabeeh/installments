@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $name
+ * @property int $status
  *
  * @property Installment[] $installments
  * @property Items[] $items
@@ -16,7 +17,7 @@ use Yii;
 class Customers extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -24,24 +25,26 @@ class Customers extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'status'], 'required'],
+            [['status'], 'integer'],
             [['name'], 'string', 'max' => 250],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'status' => Yii::t('app', 'Status'),
         ];
     }
 
@@ -62,7 +65,7 @@ class Customers extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return CustomersQuery the active query used by this AR class.
      */
     public static function find()
