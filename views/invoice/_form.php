@@ -24,9 +24,6 @@ use kartik\date\DatePicker;
         ]
     ]);
     ?>
-
-    <?= $form->field($model, 'date')->textInput() ?>
-
     <?= $form->field($model, 'total')->textInput() ?>
 
   
