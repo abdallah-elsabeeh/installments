@@ -1,6 +1,7 @@
 <?php
 
 use yii\grid\GridView;
+use yii\helpers\Html;
 
 $this->title = Yii::t('app', 'monthly installment');
 $this->params['breadcrumbs'][] = $this->title;
@@ -16,10 +17,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'total_sum',
                 'total_installment',
                 'date',
-                'name',
-                'notes'
-            ],
-        ]);
-        ?>
+                [
+                    'label' => 'name',
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                        return Html::a($data['name'], ['installment/index', 'page' => 1, 'customer_id' => $data['customer_id']]);
+                    },
+                        ],
+                        'notes'
+                    ],
+                ]);
+                ?>
     </div>
 </div>
