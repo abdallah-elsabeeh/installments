@@ -4,7 +4,6 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('app', 'monthly installment');
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
 
 <div class="invoice-index">
@@ -14,10 +13,11 @@ $this->params['breadcrumbs'][] = $this->title;
         GridView::widget([
             'dataProvider' => $due_installment,
             'columns' => [
-                'total',
+                'total_sum',
+                'total_installment',
                 'date',
                 'name',
-                'notes',
+                'notes'
             ],
         ]);
         ?>
