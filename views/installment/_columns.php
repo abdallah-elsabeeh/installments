@@ -17,10 +17,6 @@ return [
     // ],
     [
         'class' => '\kartik\grid\DataColumn',
-        'attribute' => 'item_id',
-    ],
-    [
-        'class' => '\kartik\grid\DataColumn',
         'attribute' => 'item',
         'label' => 'Item Name',
         'value' => 'item.name'
@@ -43,14 +39,10 @@ return [
         'class' => '\kartik\grid\DataColumn',
         'attribute' => 'notes',
     ],
-    // [
-    // 'class'=>'\kartik\grid\DataColumn',
-    // 'attribute'=>'is_made_payment',
-    // ],
-    // [
-    // 'class'=>'\kartik\grid\DataColumn',
-    // 'attribute'=>'total',
-    // ],
+    [
+        'class' => '\kartik\grid\DataColumn',
+        'attribute' => 'total',
+    ],
     [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,

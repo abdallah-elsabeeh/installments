@@ -15,6 +15,7 @@ $this->title = Yii::t('app', 'Installments');
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
+
 ?>
 <p>
 
@@ -34,8 +35,8 @@ CrudAsset::register($this);
                 if ($model->is_made_payment == 1) {
                     return ['class' => 'success'];
                 }
-                if ($model->date < date('Y-m-d') && $model->is_made_payment == 0) {
-                    return ['class' => 'danger'];
+                else if ($model->date < date('Y-m-d') && $model->is_made_payment == 0) {
+                    return ['class' => 'info'];
                 }
             },
                     'filterModel' => $searchModel,
