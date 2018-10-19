@@ -6,14 +6,17 @@ use Yii;
 use yii\data\SqlDataProvider;
 
 class ReportsController extends \yii\web\Controller {
-    
-    
+
     public function actionIndex() {
         $totalUnpaidInstallment = Yii::$app->db->createCommand("SELECT SUM(installment.total) FROM installment JOIN customers ON installment.customer_id = customers.id WHERE installment.is_made_payment = 0 AND customers.status =1");
         $totalDueInstallment = Yii::$app->db->createCommand("SELECT SUM(installment.total) FROM installment JOIN customers ON installment.customer_id = customers.id WHERE installment.is_made_payment = 0 AND customers.status =1 AND installment.date < LAST_DAY(CURDATE())");
+        $totalPaidInstallment = Yii::$app->db->createCommand("SELECT SUM(installment.total) FROM installment WHERE installment.is_made_payment = 1");
+        $totalInstallment = Yii::$app->db->createCommand("SELECT SUM(installment.total) FROM installment");
         return $this->render('index', [
                     'totalUnpaidInstallment' => $totalUnpaidInstallment->queryScalar(),
                     'totalDueInstallment' => $totalDueInstallment->queryScalar(),
+                    'totalPaidInstallment' => $totalPaidInstallment->queryScalar(),
+                    'totalInstallment' => $totalInstallment->queryScalar(),
         ]);
     }
 
@@ -29,7 +32,7 @@ class ReportsController extends \yii\web\Controller {
                     'monthly_installment' => $monthly_installment_dataProvider,
         ]);
     }
-    
+
     public function actionMonthlyInstallmentBeerUser() {
         $monthly_installment_monthly_beer_user = "SELECT SUM(installment.total) AS SUM ,YEAR(installment.date) AS YEAR, MONTH(installment.date) AS MONTH, customers.name AS NAME FROM installment 
                                 JOIN customers 
@@ -46,7 +49,7 @@ class ReportsController extends \yii\web\Controller {
                     'monthly_installment_monthly_beer_user' => $monthly_installment_beer_user_dataProvider,
         ]);
     }
-    
+
     public function actionDueInstallment() {
         $due_installment = "SELECT * , SUM(installment.total) as total_sum,COUNT(installment.id) as total_installment FROM installment
                             JOIN customers on customers.id =installment.customer_id
