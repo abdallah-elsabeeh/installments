@@ -18,10 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="row">
     <div class="col-md-6">
-        <h1>مجموع الاقساط الكلي: <?= $totalUnpaidInstallment; ?></h1>
+        <h1>مجموع الاقساط المدفوعة: <?= $totalPaidInstallment; ?></h1>
     </div>
     <div class="col-md-6">
-        <h1>مجموع الاقساط الكلي: <?= $totalUnpaidInstallment; ?></h1>
+        <h1>مجموع الاقساط الكلي: <?= $totalInstallment; ?></h1>
     </div>
 </div>
 <div class="row">
