@@ -48,7 +48,7 @@ class ReportsController extends \yii\web\Controller {
     }
     
     public function actionDueInstallment() {
-        $due_installment = "SELECT * FROM installment
+        $due_installment = "SELECT * , SUM(installment.total) as total_sum,COUNT(installment.id) as total_installment FROM installment
                             JOIN customers on customers.id =installment.customer_id
                             WHERE installment.is_made_payment = 0 AND installment.date < CURDATE()
                             AND customers.status = 1
