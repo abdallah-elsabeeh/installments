@@ -66,4 +66,19 @@ class ReportsController extends \yii\web\Controller {
         ]);
     }
 
+    public function actionThisMonthInstallments($date = null) {
+        if ($date == null) {
+            $date = date("Y-m-d");
+        }
+        $this_month_installments = "SELECT * FROM installment JOIN customers on customers.id =installment.customer_id WHERE installment.is_made_payment = 0 AND customers.status = 1 AND (installment.date between DATE_FORMAT('".$date."','%Y-%m-01') AND LAST_DAY('".$date."')) GROUP BY customers.id";
+        $count = count(Yii::$app->db->createCommand($this_month_installments)->queryAll());
+        $this_month_installments_dataProvider = new SqlDataProvider([
+            'sql' => $this_month_installments,
+            'totalCount' => $count,
+        ]);
+        return $this->render('this_month_installments', [
+                    'this_month_installments' => $this_month_installments_dataProvider,
+        ]);
+    }
+
 }
