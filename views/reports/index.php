@@ -25,16 +25,20 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <?= Html::a(Yii::t('app', 'monthly installment beer user'), ['reports/monthly-installment-beer-user'], ['class' => 'btn btn-success']) ?>
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <?= Html::a(Yii::t('app', 'monthly installment'), ['reports/monthly-installment'], ['class' => 'btn btn-success']) ?>
 
     </div>
-      <div class="col-md-4">
+    <div class="col-md-3">
         <?= Html::a(Yii::t('app', 'due installment'), ['reports/due-installment'], ['class' => 'btn btn-success']) ?>
+
+    </div>
+    <div class="col-md-3">
+        <?= Html::a(Yii::t('app', 'customers installments according to month'), ['reports/this-month-installments'], ['class' => 'btn btn-success']) ?>
 
     </div>
 </div>
